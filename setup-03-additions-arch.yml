@@ -40,9 +40,10 @@
         - name: Arch | Installing software from aur
           kewlfft.aur.aur:
             name:
+              - unifi
               #- gotop
               - ttf-wps-fonts
-              - wps-office
+              #- wps-office
             state: latest
 
         - name: Arch | Installing software
@@ -50,13 +51,11 @@
             name:
               - chromium
               - code
-              - cowsay
               # - docker
               # - docker-compose
               - freerdp
               - gnome-keyring
               - lsb-release
-              - networkmanager-openconnect
               - remmina
               - shfmt
             state: installed

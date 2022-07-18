@@ -1,278 +1,200 @@
-// vim:ft=json
+// Global 
 {
-  // General
   "layer": "top",
   "position": "top",
-  //"margin-left": 4,
-  //"margin-right": 4,
-  // Modules
+
+  // If height property would be not present, it'd be calculated dynamically
+  "height": 30,
+//   "width" : 10,
+
   "modules-left": [
-    //"custom/name",
-    "sway/workspaces",
-    //"custom/right-arrow-dark",
-    //"custom/right-arrow-light",
-    "custom/weather",
-    //"custom/right-arrow-dark",
-    //"custom/right-arrow-light",
-    "sway/mode"
-    //"custom/right-arrow-dark"
+      "custom/launcher",
+      "sway/workspaces",
+      "sway/mode",
   ],
+
   "modules-center": [
-    //"custom/left-arrow-dark",
-    //"custom/left-arrow-light",
-    //"custom/left-arrow-dark",
-    "sway/window",
-    "custom/recorder"
-    //"custom/right-arrow-dark"
-    //"custom/right-arrow-light",
-    //"custom/right-arrow-dark"
   ],
+
   "modules-right": [
-    //"custom/left-arrow-dark",
-    //"custom/watson",
-    "custom/timet",
-    "pulseaudio",
-    //"custom/left-arrow-light",
-    //"custom/left-arrow-dark",
-    //"memory",
-    //"custom/left-arrow-light",
-    //"custom/left-arrow-dark",
-    //"cpu",
-    //"custom/left-arrow-light",
-    //"custom/left-arrow-dark",
-    "battery",
-    "battery#bat1",
-    //"custom/left-arrow-light",
-    //"custom/left-arrow-dark",
-    "custom/arch-updates",
-    //"custom/left-arrow-light",
-    //"custom/left-arrow-dark",
-    //"network",
-    //"custom/left-arrow-light",
-    //"custom/left-arrow-dark",
-    "clock#4",
-    "clock#3",
-    //"custom/left-arrow-light",
-    //"custom/left-arrow-dark",
-    "tray",
-    "idle_inhibitor"
-    //"custom/notification"
+      "network",
+      "idle_inhibitor",
+      "memory",
+      "cpu",
+      "pulseaudio",
+      "bluetooth",
+      "clock",
+      "tray",
+      "custom/weather",
+      "custom/power",
   ],
-  // Module Config
-  "custom/left-arrow-dark": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left-arrow-light": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right-arrow-dark": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right-arrow-light": {
-    "format": "",
-    "tooltip": false
-  },
-  "clock#1": {
-    //"format": "{:%a}",
-    "tooltip": true,
-    "interval": 1,
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%a %Y-%m-%d %X}"
-  },
-  "clock#2": {
-    "format": "{:%H:%M}",
-    "tooltip": false
-  },
-  "clock#3": {
-    "format": "{:%H:%M}(UTC)",
-    "format-alt": "{}",
-    "tooltip": false,
-    "timezone": "Etc/UTC"
-  },
-  "clock#4": {
-    "format": "{:%a %d.%m %H:%M}",
-    "format-alt": " {:%d %b %Y}",
-    "tooltip-format": "{:%d %B %Y}"
-  },
-  "pulseaudio": {
-    "format": "{icon} {volume}% {format_source}",
-    "format-bluetooth": "{icon} {volume}% {format_source}",
-    "format-bluetooth-muted": " {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": " {volume}%",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    },
-    "scroll-step": 5,
-    "on-click": "pavucontrol",
-    "on-click-right": "blueman-manager"
-  },
-  "memory": {
-    "interval": 5,
-    "format": "Mem {}%"
-  },
-  "cpu": {
-    "interval": 5,
-    "format": "CPU {usage:2}%"
-  },
-  "battery": {
-    "bat": "BAT0",
-    "states": {
-      "full": 100,
-      "good": 95,
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "<span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}% ({time})",
-    "format-charging": "<span font='Font Awesome 5 Free'></span> <span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}% ({time})",
-    "format-full": "<span font='Font Awesome 5 Free'></span> <span font='Font Awesome 5 Free 11'>{icon}</span> Full",
-    "format-time": "{H}h{M}m",
-    "interval": 30,
-    "on-click": "gnome-power-statistics",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
-  },
-  "battery#bat1": {
-    "bat": "BAT1",
-    "states": {
-      "full": 100,
-      "good": 95,
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "<span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}% ({time})",
-    "format-charging": "<span font='Font Awesome 5 Free'></span> <span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}% ({time})",
-    "format-full": "<span font='Font Awesome 5 Free'></span> <span font='Font Awesome 5 Free 11'>{icon}</span> Full",
-    "format-time": "{H}h{M}m",
-    "interval": 30,
-    "on-click": "gnome-power-statistics",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
-  },
-  "tray": {
-    "icon-size": 20
-  },
-  "network": {
-    //"interface": "wlp4s0",
-    "format": "{ifname}",
-    "format-wifi": " {essid} ({signalStrength}%)",
-    "format-ethernet": " {ifname}",
-    "format-disconnected": "", //An empty format will hide the module.
-    "tooltip-format": "{ifname}",
-    "tooltip-format-wifi": " {essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": " {ifname}",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50,
-    "on-click": "nm-connection-editor"
-  },
-  "sway/window": {
-    "format": "{}",
-    "max-length": 40,
-    "icon": false
-  },
-  "sway/mode": {
-    "format": " {}",
-    "max-length": 50
-  },
-  "custom/timet": {
-    "exec": "$HOME/.config/waybar/scripts/timetagger-active.sh",
-    //"return-type": "json",
-    "restart-interval": 20,
-    "format": "{}",
-    "on-click": "$HOME/.config/waybar/scripts/dmenutimet.sh"
-  },
-  "custom/arch-updates": {
-    "format": " {}",
-    "interval": "900",
-    "exec": "checkupdates | wc -l",
-    //"exec": "checkupdates | wc -l",
-    //"exec-if": "exit 0",
-    //"signal": 8,
-    //"on-click": "pamac-manager",
-    "on-click": "alacritty --class floating_update -e yay --devel -Syu",
-    "on-click-right": "checkupdates | wc -l",
-    "tooltip": false
-  },
-  "custom/weather": {
-    "interval": "1800",
-    "exec": "weather.sh $WEATHER_LOC",
-    "on-click": "xdg-open https://wttr.in/$WEATHER_LOC"
-  },
-  "custom/scratchpad": {
-    "format": "Scratchpad: {}",
-    "escape": true,
-    "interval": 1,
-    "exec": "swaymsg -t get_tree | jq '.nodes[].nodes[] | select(.name==\"__i3_scratch\").floating_nodes | length'",
-    "exec-if": "swaymsg -t get_tree | jq '.nodes[].nodes[] | select(.name==\"__i3_scratch\").floating_nodes | length' | grep -v '^0$'"
-  },
+
+  // Modules
+
   "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      //  "activated": "",
-      //  "deactivated": ""
-      "activated": "<span font='Font Awesome 5 Free 9'></span>",
-      "deactivated": "<span font='Font Awesome 5 Free 9'></span>"
-    }
+      "format": "  {icon}  ",
+      "format-icons":{
+          "activated": "",
+          "deactivated": "<span color=\"#F9C096\"></span>",
+      }
   },
-  "custom/watson": {
-    "format": " {}",
-    //"max-length": 15,
-    "interval": 10,
-    "exec": "watson status",
-    "on-click": "dmenuwatson.sh",
-    "on-click-right": "watson stop"
+
+  "clock": {
+      "interval": 10,
+      "format-alt": " {:%e %b %Y}", // Icon: calendar-alt
+      "format": "{:%H:%M %p}",
+      "tooltip-format": "{:%e %B %Y}"
   },
+
+  "cpu": {
+      "interval": 5,
+      "format": "  {usage}% ({load})", // Icon: microchip
+      "states": {
+          "warning": 70,
+          "critical": 90,
+      },
+      "on-click": "alacritty -e 'htop'",
+  },
+
+  "custom/keyboard-layout": {
+      "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+      // Interval set only as a fallback, as the value is updated by signal
+      "interval": 30,
+      "format": "  {}", // Icon: keyboard
+      // Signal sent by Sway key binding (~/.config/sway/key-bindings)
+      "signal": 1, // SIGHUP
+      "tooltip": false,
+      "on-click": "~/.config/waybar/scripts/keyhint.sh",
+  },
+
+  "memory": {
+      "interval": 5,
+      "format": "  {}% ", // Icon: memory
+      "on-click": "alacritty -e 'htop'", 
+      "states": {
+          "warning": 70,
+          "critical": 90
+      }
+  },
+
+  "network": {
+      "interval": 5,
+      "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
+      "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+      "format-disconnected": "⚠  Disconnected",
+      "tooltip-format": "{ifname}: {ipaddr}",
+      "on-click": "nm-connection-editor",
+  },
+  "network#vpn": {
+      "interface": "tun0",
+      "format": "  {essid} ({signalStrength}%)",
+      "format-disconnected": "⚠  Disconnected",
+      "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+  },
+
+  "sway/mode": {
+      "format": "{}",
+      "tooltip": false
+  },
+
+  "sway/window": {
+      "format": "{}",
+      "max-length": 120
+  },
+
   "sway/workspaces": {
-    "disable-scroll": false,
-    "disable-scroll-wraparound": true,
-    "format": "{index}:{name}"
+      "disable-scroll": true,
+      "disable-markup" : false,
+      "all-outputs": false,
+      "format": " {name} ",
+      //"format":"{icon}",
   },
-  "custom/notification": {
-    "tooltip": false,
-    "format": "{icon}",
-    "format-icons": {
-      "notification": "<span foreground='red'><sup></sup></span>",
-      "none": "",
-      "dnd-notification": "<span foreground='red'><sup></sup></span>",
-      "dnd-none": ""
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
+
+  "pulseaudio": {
+      "scroll-step": 1, // %, can be a float
+      "format": "{volume}% {icon}",
+      "format-bluetooth": "{volume}% {icon}  {format_source}",
+      "format-bluetooth-muted": " {icon}  {format_source}",
+      "format-muted": "婢 {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "וֹ",
+          "headset": "  ",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": [""]
+      },
+      "on-click": "pavucontrol",
+      "on-scroll-up": "pamixer -ui 2",
+      "on-scroll-down": "pamixer -ud 2",
   },
-  // From https://gist.github.com/ugursogukpinar/f390d9f4c829fb1b05fc74a12dd482bb
-  "custom/recorder": {
-    "format": "",
-    "return-type": "json",
-    "interval": 1,
-    "exec": "echo '{\"class\": \"recording\"}'",
-    "exec-if": "pgrep wf-recorder"
-  }
+
+  "custom/weather": {
+      "exec": "~/.config/waybar/scripts/weather.sh Sydney",
+      "format": "{text} {icon}",
+      "return-type": "json",
+      "interval": 600,
+      "tooltip-format": "{tooltip}"
+  },
+  
+  "bluetooth": {
+	// "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+	"format": " {status}",
+	"format-disabled": "", // an empty format will hide the module
+	"format-connected": " {num_connections} connected",
+	"tooltip-format": "{controller_alias}\t{controller_address}",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+},
+
+  "tray": {
+      "icon-size": 18,
+      "spacing":10,
+   },
+
+  "backlight#icon": {
+      "format": "{icon}",
+      "format-icons": [""],
+      "on-scroll-down": "brightnessctl -c backlight set 1%-",
+      "on-scroll-up": "brightnessctl -c backlight set +1%"
+  },
+
+  "backlight#value" :{
+       "format": "{percent}%",
+       "on-scroll-down": "brightnessctl -c backlight set 1%-",
+       "on-scroll-up": "brightnessctl -c backlight set +1%"
+  },
+
+  "custom/firefox": {
+      "format": " ",
+      "on-click": "exec firefox",
+      "tooltip": false
+  },
+
+  "custom/terminal": {
+      "format": " ",
+      "on-click": "exec alacritty",
+      "tooltip": false
+  },
+
+  "custom/files": {
+      "format": " ",
+      "on-click": "exec thunar",
+      "tooltip": false
+  },
+
+  "custom/launcher": {
+      "format":" ",
+      "on-click": "exec wofi -c ~/.config/wofi/config -I",
+      "tooltip": false,
+  },
+
+  "custom/power": {
+      "format":"⏻",
+      "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
+      "tooltip": false,
+  },
 }

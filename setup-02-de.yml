@@ -45,8 +45,9 @@
             name:
               - alacritty
               - antiword
-              - bemenu
-              - bemenu-wayland
+              - bitwarden
+              #- bemenu
+              #- bemenu-wayland
               - blueman
               - cdrtools
               - chafa
@@ -54,29 +55,31 @@
               - ffmpeg
               #- gammastep
               - glow
-              - gnome-power-manager
-              - gobject-introspection
+              #- gnome-power-manager
+              #- gobject-introspection
               - grim
               - highlight
               - imagemagick
               - jq
-              - kanshi
-              - libpipewire02
+              #- kanshi
+              #- libpipewire02
+              - libreoffice
               - lsd
               - mako
               - ncmpcpp
-              - network-manager-applet
+              #- network-manager-applet
+              - nnn
               - noto-fonts-emoji
               - odt2txt
               #- otf-font-awesome
               - pamixer
               - pavucontrol
-              - pcmanfm-gtk3
+              #- pcmanfm-gtk3
               - perl-image-exiftool
               - pkgfile
               - playerctl
               - polkit-gnome
-              - python-pywal
+              #- python-pywal
               - qt5-wayland
               - qt6-wayland
               - rsync
@@ -86,7 +89,8 @@
               - sway
               - swayidle
               - swaylock
-              - thefuck
+              - thunar
+              #- thefuck
               #- ttf-dejavu
               - udiskie
               - waybar
@@ -116,36 +120,32 @@
             mode: 0640
           become_user: aur_builder
 
-        #- name: Arch | Adding gpg keyserver for user aur_builder
-        #  lineinfile:
-        #    path: "~/.gnupg/gpg.conf"
-        #    regexp: "^keyserver hkp.*"
-        #    line: keyserver pool.sks-keyservers.net
-        #    owner: aur_builder
-        #    group: aur_builder
-        #    mode: 0640
-        #  become_user: aur_builder
-
         - name: Arch | Installing required software from aur
           kewlfft.aur.aur:
             name:
-              - archivemount
-              - autotiling
+              #- archivemount
+              #- autotiling
               - avizo
-              - bemenu-dmenu
+              #- bemenu-dmenu
               - clipman
               - dragon-drop
               - edir
+              - greetd
+              - greetd-qtgreet
               #- glow-bin
-              - j4-dmenu-desktop
+              #- j4-dmenu-desktop
               - lf
-              - nerd-fonts-dejavu-complete
+              - nerd-fonts-complete
+              - nordic-theme
+              - nordic-bluish-accent-standard-buttons-theme
+              - nordic-darker-theme
               #- otf-font-awesome-4
               #- remontoire-git
               #- ttf-font-awesome-4
               #- wl-clipboard-git
               #- wl-clipboard-x11
-              - wlsunset
+              #- wlsunset
+              - teams
               - wshowkeys-git
               - yay
             state: present
@@ -172,17 +172,18 @@
         - "{{ BIN_DIR }}/zsh"
         - "{{ SYSTEMD_UDIR }}"
         - "{{ ansible_user_dir }}/.config/mako"
-        - "{{ ansible_user_dir }}/.config/kanshi"
+        - "{{ ansible_user_dir }}/.config/environment.d"
+        #- "{{ ansible_user_dir }}/.config/kanshi"
         - "{{ ansible_user_dir }}/.config/swappy"
         - "{{ ansible_user_dir }}/.config/lf"
         - "{{ ansible_user_dir }}/.config/alacritty"
-        - "{{ ansible_user_dir }}/.config/wal/templates"
+        #- "{{ ansible_user_dir }}/.config/wal/templates"
         - "{{ ansible_user_dir }}/.config/wget"
         - "{{ ansible_user_dir }}/.config/zsh"
         - "{{ ansible_user_dir }}/.config/xdg-desktpo-portal-wlr"
-        - "{{ ansible_user_dir }}/.local/share/themes/Windows-10"
-        - "{{ ansible_user_dir }}/.local/share/icons/Windows-10"
-        - "{{ USER_PICTURE_DIR }}/screenshots"
+        #- "{{ ansible_user_dir }}/.local/share/themes/Windows-10"
+        #- "{{ ansible_user_dir }}/.local/share/icons/Windows-10"
+        #- "{{ USER_PICTURE_DIR }}/screenshots"
 
     - name: Common | Ensure wgetrc exists
       copy:
@@ -270,10 +271,10 @@
         daemon_reload: true
         scope: user
       with_items:
-        - autotiling
+        #- autotiling
         - avizo-service
         - inactive-windows-transparency
-        - kanshi
+        #- kanshi
         - mako
         - polkit-gnome
         - ssh-agent
@@ -286,15 +287,6 @@
         daemon_reload: true
         scope: user
       when: systemd_user_units.changed
-
-    - name: Common | Checking if created colors-mako exist
-      stat:
-        path: "{{ ansible_user_dir }}/.cache/wal/colors-mako"
-      register: mako_pywal_config
-
-    - name: Common | Creating default pywal config
-      command: wal --theme base16-dracula -o {{ BIN_DIR }}/sway/wal.sh
-      when: not mako_pywal_config.stat.exists
 
     - name: Common | Creating config symlinks...
       file:
@@ -315,20 +307,15 @@
             dest: "{{ SWAY_DIR }}/sway.d",
             mode: "0750",
           }
-        - {
-            src: "{{ ansible_user_dir }}/.cache/wal/colors-mako",
-            dest: "{{ ansible_user_dir }}/.config/mako/config",
-            mode: "0640",
-          }
+        # - {
+        #     src: "{{ ansible_user_dir }}/.cache/wal/colors-mako",
+        #     dest: "{{ ansible_user_dir }}/.config/mako/config",
+        #     mode: "0640",
+        #   }
         - {
             src: "{{ playbook_dir }}/config/waybar",
             dest: "{{ ansible_user_dir }}/.config/waybar",
             mode: "0750",
-          }
-        - {
-            src: "{{ playbook_dir }}/config/kanshi/config.example",
-            dest: "{{ ansible_user_dir }}/.config/kanshi/config.example",
-            mode: "0640",
           }
         - {
             src: "{{ playbook_dir }}/config/swappy/config",
@@ -346,31 +333,10 @@
             mode: "0640",
           }
         - {
-            src: "{{ playbook_dir }}/config/wal/templates/colors-mako",
-            dest: "{{ ansible_user_dir }}/.config/wal/templates/colors-mako",
-            mode: "0640",
-          }
-        - {
             src: "{{ playbook_dir }}/config/xdg-desktpo-portal-wlr/config",
             dest: "{{ ansible_user_dir }}/.config/xdg-desktpo-portal-wlr/config",
             mode: "0640",
           }
-
-    - name: Common | Cloning Windows-10 themes and icons...
-      git:
-        repo: "{{ item.src }}"
-        dest: "{{ item.dest }}"
-        update: true
-      with_items:
-        - {
-            src: "https://github.com/B00merang-Project/Windows-10.git",
-            dest: "{{ ansible_user_dir }}/.local/share/themes/Windows-10",
-          }
-        - {
-            src: "https://github.com/B00merang-Artwork/Windows-10.git",
-            dest: "{{ ansible_user_dir }}/.local/share/icons/Windows-10",
-          }
-      diff: false
 
     - name: Common | Extending user .bashrc...
       blockinfile:
@@ -425,11 +391,11 @@
             dest: "{{ ROOT_BIN_DIR }}/bash/sway-de.sh",
             mode: "0600",
           }
-        - {
-            src: "{{ playbook_dir }}/bin/sway",
-            dest: "/usr/local/sbin/sway",
-            mode: "0755",
-          }
+        # - {
+        #     src: "{{ playbook_dir }}/bin/sway",
+        #     dest: "/usr/local/sbin/sway",
+        #     mode: "0755",
+        #   }
       become: true
 
     - name: Common | Configuring {{ ansible_user_dir }}/.config/gtk-3.0/settings.ini
@@ -443,8 +409,8 @@
         no_extra_spaces: true
         mode: 0640
       with_items:
-        - { option: "gtk-theme-name", value: "Windows-10" }
-        - { option: "gtk-icon-theme-name", value: "Windows-10" }
+        - { option: "gtk-theme-name", value: "Catppuccin-blue" }
+        - { option: "gtk-icon-theme-name", value: "Zafiro-Dark" }
 
     - name: Common | Configuring {{ ansible_user_dir }}/.config/gtk-2.0/gtkrc-2.0
       ini_file:
@@ -457,16 +423,29 @@
         no_extra_spaces: true
         mode: 0640
       with_items:
-        - { option: "gtk-theme-name", value: '"Windows-10"' }
-        - { option: "gtk-icon-theme-name", value: '"Windows-10"' }
+        - { option: "gtk-theme-name", value: "Catppuccin-blue" }
+        - { option: "gtk-icon-theme-name", value: "Zafiro-Dark" }
 
     # {{ ansible_user_dir }}/.pam_environment is the most compatible way
     # to set enviromment variables. --> Deprecated as of
     # https://github.com/linux-pam/linux-pam/commit/ecd526743a27157c5210b0ce9867c43a2fa27784
 
-    - name: Common | Configuring {{ ansible_user_dir }}/.config/sway/env
+    # - name: Common | Configuring {{ ansible_user_dir }}/.config/sway/env
+    #   blockinfile:
+    #     dest: "{{ ansible_user_dir }}/.config/sway/env"
+    #     block: |
+          
+    #     marker: "
+    #       # {mark} Sway desktop environment config"
+    #     insertafter: EOF
+    #     create: true
+    #     owner: "{{ ansible_user_id }}"
+    #     group: "{{ ansible_user_id }}"
+    #     mode: 0640
+
+    - name: Common | Configuring {{ ansible_user_dir }}/.config/environment.d/sway.conf
       blockinfile:
-        dest: "{{ ansible_user_dir }}/.config/sway/env"
+        dest: "{{ ansible_user_dir }}/.config/environment.d/sway.conf"
         block: |
           # Reduces crashs for some gdk apps, like evolution
           # ! Do not set as global variable. Electron Apps will not start !
@@ -500,23 +479,8 @@
           # Java under Xwayland
           export _JAVA_AWT_WM_NONREPARENTING=1
 
-          # Bemenu
-          export BEMENU_BACKEND=wayland
-
           # Session Type for later screensharing
           export XDG_SESSION_TYPE=wayland
-        marker: "
-          # {mark} Sway desktop environment config"
-        insertafter: EOF
-        create: true
-        owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
-        mode: 0640
-
-    - name: Common | Configuring {{ ansible_user_dir }}/.config/environment.d/sway.conf
-      blockinfile:
-        dest: "{{ ansible_user_dir }}/.config/environment.d/sway.conf"
-        block: |
           LESSHISTFILE=-
           # Path to SSH_AUTH_SOCK
           SSH_AUTH_SOCK=${HOME}/.ssh/ssh-agent.sock
@@ -594,7 +558,7 @@
         - "{{ STARSHIP_OPTIONS }}"
       become: true
 
-    - name: CCreating custom sway.desktop entry to load correct environment variables
+    - name: Creating custom sway.desktop entry to load correct environment variables
       blockinfile:
         dest: /usr/share/wayland-sessions/sway-custom.desktop
         block: |

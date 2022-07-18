@@ -23,8 +23,8 @@
 #  --effect-vignette 0.5:0.5 \
 #  --effect-compose "1.5%,1.5%;-1x10%;$HOME/.config/sway/sway.d/lock.png"
 
-bash bingwallpaper &>/dev/null &
-RANDOMPIC=$(ls ~/Pictures/Bing/*.jpg* | sort -R | tail -1)
+#bash bingwallpaper &>/dev/null &
+#RANDOMPIC=$(ls ~/Pictures/Bing/*.jpg* | sort -R | tail -1)
 
 #̂swaylock --daemonize --clock --indicator \
 #̂  --image "$RANDOMPIC" \
@@ -47,7 +47,7 @@ RANDOMPIC=$(ls ~/Pictures/Bing/*.jpg* | sort -R | tail -1)
 #̂  --effect-compose "42%,36%;-1x28%;$HOME/Pictures/kBz4LzR2_400x400_cropped.png"
 
 swaylock --daemonize \
-  --image "$RANDOMPIC" \
+  --image "~/Pictures/mountains_winter_snow_118389_3840x2160.jpg" \
   --scaling stretch \
   --indicator-idle-visible \
   --indicator-radius 150 \

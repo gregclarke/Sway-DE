@@ -15,7 +15,6 @@ More Screenshots can be found in the [screenshots](screenshots/) folder.
 * [Applications beeing installed](#applications-beeing-installed)
   * [Arch Repository](#arch-repository)
   * [Aur](#aur)
-* [Theming with pywal](#theming-with-pywal)
 * [Hotkeys](#hotkeys)
 * [Custom Sway configuration](#custom-sway-configuration)
   * [Device specific configuration](#device-specific-configuration)
@@ -67,7 +66,6 @@ More Screenshots can be found in the [screenshots](screenshots/) folder.
 * Automount removable drives via [udiskie](https://pypi.org/project/udiskie/)
 * Full QHD Support (I also assume WHD). I haven't noticed scaling problems with XWayland applications
 * Clipboard Manager (clipman) which hides KeePassXC data
-* pywal support!
 
 ## Prerequisites
 
@@ -201,7 +199,7 @@ This role installs multiple applications from arch repository and aur.
 | [swaylock-effects-git](https://github.com/mortie/swaylock-effects)           | Swaylock, with fancy effects                                                             |
 | [ttf-font-awesome-4](https://aur.archlinux.org/packages/ttf-font-awesome-4/) |                                                                                          |
 | [wf-recorder-git](https://github.com/ammen99/wf-recorder)                    | Screen recording of wlroots-based compositors                                            |
-| [wl-clipboard-git](https://github.com/bugaevc/wl-clipboard)                  | Command-line copy/paste utilities for Wayland                                            |
+| [wl-clipboard-git](https://github.com/bugaevc/wl-clipboard)                  | Command-line copy/paste utilities for DWayland                                            |
 | [wshowkeys](https://git.sr.ht/~sircmpwn/wshowkeys)                           | Shows keypresses on first output                                                         |
 | xdg-desktop-portal-wlr                                                       |                                                                                          |
 
