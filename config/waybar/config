@@ -14,6 +14,7 @@
   ],
 
   "modules-center": [
+  "custom/spotify"
   ],
 
   "modules-right": [
@@ -197,4 +198,16 @@
       "on-click": "exec ~/.config/waybar/scripts/power-menu.sh",
       "tooltip": false,
   },
+"custom/spotify": {
+    	"format": "<span foreground='#E5B4E2'> </span> <span font='FiraCode Nerd Font weight=325 Italic'>{}</span>",
+        "interval": 1,
+//        "exec-if": "pgrep spotify",
+        "on-click": "playerctl -p spotify play-pause",
+        "on-scroll-up": "playerctl -p spotify previous",
+        "on-scroll-down": "playerctl -p spotify next",
+        "tooltip": false,
+        "escape": true,
+        "max-length": 60,
+        "exec": "player-song.sh"
+    },
 }
