@@ -410,7 +410,7 @@
         mode: 0640
       with_items:
         - { option: "gtk-theme-name", value: "Catppuccin-blue" }
-        - { option: "gtk-icon-theme-name", value: "Zafiro-Icons-Dark" }
+        - { option: "gtk-icon-theme-name", value: "zafiro-dark" }
 
     - name: Common | Configuring {{ ansible_user_dir }}/.config/gtk-2.0/gtkrc-2.0
       ini_file:
@@ -424,7 +424,7 @@
         mode: 0640
       with_items:
         - { option: "gtk-theme-name", value: "Catppuccin-blue" }
-        - { option: "gtk-icon-theme-name", value: "Zafiro-Icons-Dark" }
+        - { option: "gtk-icon-theme-name", value: "zafiro-dark" }
 
     # {{ ansible_user_dir }}/.pam_environment is the most compatible way
     # to set enviromment variables. --> Deprecated as of
