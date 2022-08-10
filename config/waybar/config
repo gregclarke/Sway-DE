@@ -14,7 +14,6 @@
   ],
 
   "modules-center": [
-  "custom/spotify"
   ],
 
   "modules-right": [
@@ -26,7 +25,6 @@
       "bluetooth",
       "clock",
       "tray",
-      "custom/weather",
       "custom/power",
   ],
 
